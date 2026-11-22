@@ -1,0 +1,11 @@
+
+  VITE v5.4.21  ready in 272 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+22:40:37 [vite] page reload dom.html
+22:40:38 [vite] page reload dom.html
+22:41:58 [vite] hmr update /src/main.jsx
+22:41:58 [vite] hmr invalidate /src/main.jsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+22:41:58 [vite] page reload src/main.jsx
+22:42:25 [vite] page reload index.html

@@ -1,0 +1,16 @@
+const puppeteer=require('puppeteer-core');
+const url='file:///C:/Users/LOPES/.dsh/dsh_orb/portfolio_site/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E5%93%81%E9%9B%86%E7%BD%91%E7%AB%99.html';
+(async()=>{const b=await puppeteer.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:'new',args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--allow-file-access-from-files']});
+const p=await b.newPage();await p.setViewport({width:1600,height:1000});
+const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto(url,{waitUntil:'networkidle0',timeout:120000});await new Promise(r=>setTimeout(r,1500));
+await p.evaluate(()=>{location.hash='#works';});
+await new Promise(r=>setTimeout(r,1500));
+await p.evaluate(()=>{document.querySelector('.wp__scroll').scrollTop=1500;});
+await new Promise(r=>setTimeout(r,700));
+await p.click('.wp__pgitem');await new Promise(r=>setTimeout(r,1600));
+const pv=await p.evaluate(()=>{const im=[...document.querySelectorAll('.wp__pvimg')];
+  return im.slice(0,3).map(i=>{const r=i.getBoundingClientRect();return {nat:i.naturalWidth+"x"+i.naturalHeight,w:Math.round(r.width),h:Math.round(r.height),fit:getComputedStyle(i).objectFit};});});
+await p.screenshot({path:'C:\\Users\\LOPES\\.dsh\\dsh_orb\\portfolio_site\\shots\\hq_pv2.png'});
+console.log(JSON.stringify({pv,errs}));
+await b.close();})();

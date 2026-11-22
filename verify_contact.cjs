@@ -1,0 +1,14 @@
+﻿const puppeteer=require('puppeteer-core');
+const url='file:///C:/Users/LOPES/.dsh/dsh_orb/portfolio_site/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E5%93%81%E9%9B%86%E7%BD%91%E7%AB%99.html';
+(async()=>{const b=await puppeteer.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:'new',args:['--no-sandbox','--disable-gpu','--hide-scrollbars','--allow-file-access-from-files']});
+const p=await b.newPage();await p.setViewport({width:1600,height:1000});
+const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto(url,{waitUntil:'networkidle0'});await new Promise(r=>setTimeout(r,2500));
+const r=await p.evaluate(()=>{const m=document.querySelector('.contact__meta');const it=[...m.querySelectorAll('.contact-item')];
+return{texts:it.map(e=>e.textContent.trim()),tops:it.map(e=>Math.round(e.getBoundingClientRect().top)),lefts:it.map(e=>Math.round(e.getBoundingClientRect().left)),rowH:Math.round(m.getBoundingClientRect().height),rowTexts:document.querySelector('.contact__row').textContent.trim()};});
+console.log(JSON.stringify(r,null,1));
+await p.evaluate(()=>document.getElementById('contact').scrollIntoView());
+await new Promise(r=>setTimeout(r,1500));
+await p.screenshot({path:'C:\\Users\\LOPES\\.dsh\\dsh_orb\\portfolio_site\\shots\\contact_new.png'});
+console.log('errors',JSON.stringify(errs));
+await b.close();})();

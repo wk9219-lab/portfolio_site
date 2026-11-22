@@ -1,0 +1,13 @@
+p = "C:\\Users\\LOPES\\.dsh\\dsh_orb\\portfolio_site\\\u4e2a\u4eba\u4f5c\u54c1\u96c6\u7f51\u7ad9.html"
+s = open(p,"r",encoding="utf-8").read()
+i = s.find("var dyn=")
+print("DYN:", s[i:i+120])
+j = s.find("wp__grid wp__grid--four")
+print("GRID:", s[j-60:j+160])
+k = s.find("_WIMG[8]")
+print("PROJ:", s[k-120:k+80])
+m = s.find("[9,10,11,12,13,14,15,16,17]")
+print("FRAG:", s[m-80:m+120])
+n = s.find(",_WNAME=")
+print("WNAME:", s[n-20:n+120])
+print("has _VCard:", "_VCard" in s)

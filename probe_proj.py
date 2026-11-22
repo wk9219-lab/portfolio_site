@@ -1,0 +1,16 @@
+p = "C:\\Users\\LOPES\\.dsh\\dsh_orb\\portfolio_site\\\u4e2a\u4eba\u4f5c\u54c1\u96c6\u7f51\u7ad9.html"
+s = open(p, "r", encoding="utf-8").read()
+i = s.find('className:"projects"')
+print("=== JSX ===")
+print(s[i-120:i+900])
+print()
+print("=== CSS .project ===")
+for kw in ['".project"', '.project{', '.project__no', '.project--red', '.project__media', '.project__body']:
+    j = s.find(kw)
+    print(kw, "->", j)
+print()
+j = s.find('.project{')
+print(s[j:j+700])
+print()
+k = s.find('.project__no')
+print(s[k-200:k+400])
